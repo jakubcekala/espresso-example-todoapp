@@ -1,4 +1,4 @@
-package com.example.android.architecture.blueprints.todoapp.test.espresso.example.pom
+package com.example.android.architecture.blueprints.todoapp.test.espresso.example.pom.screens
 
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.matcher.ViewMatchers.*

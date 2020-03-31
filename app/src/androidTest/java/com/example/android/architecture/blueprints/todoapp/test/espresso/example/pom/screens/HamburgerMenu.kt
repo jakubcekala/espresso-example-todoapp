@@ -9,7 +9,7 @@ import com.example.android.architecture.blueprints.todoapp.test.chapter3.checkDi
 import com.example.android.architecture.blueprints.todoapp.test.chapter3.click
 import org.hamcrest.CoreMatchers.allOf
 
-class HamburgerMenu : PageObject() {
+class HamburgerMenu : ScreenObject() {
 
     private val todoButton = onView(allOf(withId(R.id.design_menu_item_text),
             withText(R.string.list_title)))

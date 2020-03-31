@@ -55,9 +55,9 @@ class TodoListScreen {
         clickOnMenuFilterButton()
     }
 
-    fun clickOnFABButton(): NewEditTaskScreen {
+    fun clickOnFABButton(): AddEditTaskScreen {
         newTaskFabButton.click()
-        return NewEditTaskScreen()
+        return AddEditTaskScreen()
     }
 
     fun clickOnMenuFilterButton() {

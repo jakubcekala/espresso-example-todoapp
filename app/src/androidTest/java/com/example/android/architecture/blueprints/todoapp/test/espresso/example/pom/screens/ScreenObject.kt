@@ -4,7 +4,7 @@ import android.support.test.espresso.Espresso
 import android.support.test.espresso.action.ViewActions
 import android.support.test.espresso.matcher.ViewMatchers
 
-abstract class PageObject {
+abstract class ScreenObject {
     /**
      * Methods below are to sleep Thread for specific length of time:
      * Short - 1s

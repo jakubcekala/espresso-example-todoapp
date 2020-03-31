@@ -1,12 +1,11 @@
 package com.example.android.architecture.blueprints.todoapp.test.espresso.example.pom.screens
 
 import android.support.test.espresso.Espresso.onView
+import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.action.ViewActions.swipeLeft
-import android.support.test.espresso.matcher.ViewMatchers.withId
-import android.support.test.espresso.matcher.ViewMatchers.withText
+import android.support.test.espresso.assertion.ViewAssertions.matches
+import android.support.test.espresso.matcher.ViewMatchers.*
 import com.example.android.architecture.blueprints.todoapp.R
-import com.example.android.architecture.blueprints.todoapp.test.chapter3.checkDisplayed
-import com.example.android.architecture.blueprints.todoapp.test.chapter3.click
 import org.hamcrest.CoreMatchers.allOf
 
 class HamburgerMenu : ScreenObject() {
@@ -21,19 +20,19 @@ class HamburgerMenu : ScreenObject() {
 
     fun clickOnTodoButton(): TodoListScreen {
         verifyHamburgerMenuDisplay()
-        todoButton.click()
+        todoButton.perform(click())
         return TodoListScreen()
     }
 
     fun clickOnStatisticsButton(): StatisticsScreen {
         verifyHamburgerMenuDisplay()
-        statisticsButton.click()
+        statisticsButton.perform(click())
         return StatisticsScreen()
     }
 
     fun clickOnSettingsButton(): SettingsScreen {
         verifyHamburgerMenuDisplay()
-        settingsButton.click()
+        settingsButton.perform(click())
         return SettingsScreen()
     }
 
@@ -44,9 +43,9 @@ class HamburgerMenu : ScreenObject() {
     }
 
     private fun verifyHamburgerMenuDisplay() {
-        todoButton.checkDisplayed()
-        statisticsButton.checkDisplayed()
-        settingsButton.checkDisplayed()
-        navView.checkDisplayed()
+        todoButton.check(matches(isDisplayed()))
+        statisticsButton.check(matches(isDisplayed()))
+        settingsButton.check(matches(isDisplayed()))
+        navView.check(matches(isDisplayed()))
     }
 }

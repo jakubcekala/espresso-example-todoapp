@@ -1,12 +1,12 @@
 package com.example.android.architecture.blueprints.todoapp.test.espresso.example.pom.screens
 
 import android.support.test.espresso.Espresso.onView
+import android.support.test.espresso.action.ViewActions.click
+import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers.*
 import com.example.android.architecture.blueprints.todoapp.R
-import com.example.android.architecture.blueprints.todoapp.test.chapter3.checkDisplayed
-import com.example.android.architecture.blueprints.todoapp.test.chapter3.checkNotDisplayed
-import com.example.android.architecture.blueprints.todoapp.test.chapter3.click
 import org.hamcrest.CoreMatchers.allOf
+import org.hamcrest.CoreMatchers.not
 
 class StatisticsScreen {
     private val okDialogButton = onView(allOf(withId(android.R.id.button1), withText(android.R.string.ok)))
@@ -18,25 +18,26 @@ class StatisticsScreen {
     private val statisticHeader = onView(allOf(withParent(withId(R.id.toolbar)), withText(R.string.statistics_title)))
 
     fun clickOkAlertDialog() {
-        okDialogButton.click()
+        okDialogButton.perform(click())
     }
 
     fun clickCancelAlertDialog() {
-        cancelDialogButton.click()
+        cancelDialogButton.perform(click())
     }
 
     fun checkAlertDialogDisplay() {
-        alertTitle.checkDisplayed()
-        alertMessageTextView.checkDisplayed()
+        alertTitle.check(matches(isDisplayed()))
+        alertMessageTextView.check(matches(isDisplayed()))
     }
 
     fun checkAlertDialogNotDisplayed() {
-        alertTitle.checkNotDisplayed()
-        alertMessageTextView.checkNotDisplayed()
+        alertTitle.check(matches(not(isDisplayed())))
+        alertMessageTextView.check(matches(not(isDisplayed())))
+        
     }
 
     fun verifyStatisticScreen() {
-        statisticTextView.checkDisplayed()
-        statisticHeader.checkDisplayed()
+        statisticTextView.check(matches(isDisplayed()))
+        statisticHeader.check(matches(isDisplayed()))
     }
 }

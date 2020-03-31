@@ -1,12 +1,9 @@
 package com.example.android.architecture.blueprints.todoapp.test.espresso.example.pom.screens
 
 import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.action.ViewActions.clearText
+import android.support.test.espresso.action.ViewActions.*
 import android.support.test.espresso.matcher.ViewMatchers.withId
 import com.example.android.architecture.blueprints.todoapp.R
-import com.example.android.architecture.blueprints.todoapp.test.chapter3.click
-import com.example.android.architecture.blueprints.todoapp.test.chapter3.closeKeyboard
-import com.example.android.architecture.blueprints.todoapp.test.chapter3.type
 
 class AddEditTaskScreen {
     private val taskTitleEditText = onView(withId(R.id.add_task_title))
@@ -14,23 +11,23 @@ class AddEditTaskScreen {
     private val confirmFabButton = onView(withId(R.id.fab_edit_task_done))
 
     fun enterTaskTitle(title: String) {
-        taskTitleEditText.type(title).closeKeyboard()
+        taskTitleEditText.perform(typeText(title), closeSoftKeyboard())
     }
 
     fun enterTaskDescription(description: String) {
-        taskDescriptionEditText.type(description).closeKeyboard()
+        taskDescriptionEditText.perform(typeText(description), closeSoftKeyboard())
     }
 
     fun updateTaskTitle(title: String) {
-        taskTitleEditText.perform(clearText()).type(title).closeKeyboard()
+        taskTitleEditText.perform(clearText(), typeText(title), closeSoftKeyboard())
     }
 
     fun updateTaskDescription(description: String) {
-        taskDescriptionEditText.perform(clearText()).type(description).closeKeyboard()
+        taskDescriptionEditText.perform(clearText(), typeText(description), closeSoftKeyboard())
     }
 
     fun clickOnConfirmFabButton(): TodoListScreen {
-        confirmFabButton.click()
+        confirmFabButton.perform(click())
         return TodoListScreen()
     }
 

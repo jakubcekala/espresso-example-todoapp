@@ -2,10 +2,10 @@ package com.example.android.architecture.blueprints.todoapp.test.espresso.exampl
 
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.Espresso.openContextualActionModeOverflowMenu
+import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.matcher.ViewMatchers.withId
 import android.support.test.espresso.matcher.ViewMatchers.withText
 import com.example.android.architecture.blueprints.todoapp.R
-import com.example.android.architecture.blueprints.todoapp.test.chapter3.click
 import org.hamcrest.CoreMatchers.allOf
 
 class TodoListScreen {
@@ -23,32 +23,32 @@ class TodoListScreen {
 
     fun selectClearCompletedFromContextualMenu() {
         openContextualActionModeOverflowMenu()
-        clearCompletedMenuTile.click()
+        clearCompletedMenuTile.perform(click())
     }
 
     fun selectRefreshFromContextualMenu() {
         openContextualActionModeOverflowMenu()
-        refreshMenuTile.click()
+        refreshMenuTile.perform(click())
     }
 
     fun selectShareFromContextualMenu() {
         openContextualActionModeOverflowMenu()
-        shareMenuTile.click()
+        shareMenuTile.perform(click())
     }
 
     fun showAllTasks() {
         clickOnMenuFilterButton()
-        allFilterTile.click()
+        allFilterTile.perform(click())
     }
 
     fun showActiveTasks() {
         clickOnMenuFilterButton()
-        activeFilterTile.click()
+        activeFilterTile.perform(click())
     }
 
     fun showCompletedTasks() {
         clickOnMenuFilterButton()
-        completedFilterTile.click()
+        completedFilterTile.perform(click())
     }
 
     fun selectAllTasksFilter() {
@@ -56,11 +56,11 @@ class TodoListScreen {
     }
 
     fun clickOnFABButton(): AddEditTaskScreen {
-        newTaskFabButton.click()
+        newTaskFabButton.perform(click())
         return AddEditTaskScreen()
     }
 
     fun clickOnMenuFilterButton() {
-        menuFilterButton.click()
+        menuFilterButton.perform(click())
     }
 }

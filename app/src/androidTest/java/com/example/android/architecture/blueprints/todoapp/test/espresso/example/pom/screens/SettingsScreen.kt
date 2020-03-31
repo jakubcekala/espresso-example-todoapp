@@ -1,10 +1,10 @@
 package com.example.android.architecture.blueprints.todoapp.test.espresso.example.pom.screens
 
 import android.support.test.espresso.Espresso.onView
+import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.matcher.ViewMatchers.withId
 import android.support.test.espresso.matcher.ViewMatchers.withText
 import com.example.android.architecture.blueprints.todoapp.R
-import com.example.android.architecture.blueprints.todoapp.test.chapter3.click
 import com.example.android.architecture.blueprints.todoapp.test.espresso.example.pom.screens.settings.DataSyncSettingsScreen
 import com.example.android.architecture.blueprints.todoapp.test.espresso.example.pom.screens.settings.GeneralSettingsScreen
 import com.example.android.architecture.blueprints.todoapp.test.espresso.example.pom.screens.settings.NotificationSettingsScreen
@@ -18,22 +18,22 @@ class SettingsScreen {
     private val webViewSampleButton = onView(allOf(withId(R.id.title), withText(R.string.pref_header_webview_sample)))
 
     fun clickOnGeneralButton(): GeneralSettingsScreen {
-        generalButton.click()
+        generalButton.perform(click())
         return GeneralSettingsScreen()
     }
 
     fun clickOnNotificationButton(): NotificationSettingsScreen {
-        notificationsButton.click()
+        notificationsButton.perform(click())
         return NotificationSettingsScreen()
     }
 
     fun clickOnDataSyncButton(): DataSyncSettingsScreen {
-        dataSyncButton.click()
+        dataSyncButton.perform(click())
         return DataSyncSettingsScreen()
     }
 
     fun clickOnWebViewSampleButton(): WebViewSampleScreen {
-        webViewSampleButton.click()
+        webViewSampleButton.perform(click())
         return WebViewSampleScreen()
     }
 }

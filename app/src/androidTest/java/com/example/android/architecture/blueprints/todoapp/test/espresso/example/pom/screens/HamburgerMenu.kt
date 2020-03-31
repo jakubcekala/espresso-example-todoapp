@@ -43,7 +43,7 @@ class HamburgerMenu : PageObject() {
         return BaseScreen()
     }
 
-    fun verifyHamburgerMenuDisplay() {
+    private fun verifyHamburgerMenuDisplay() {
         todoButton.checkDisplayed()
         statisticsButton.checkDisplayed()
         settingsButton.checkDisplayed()

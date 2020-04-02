@@ -11,16 +11,15 @@ import com.example.android.architecture.blueprints.todoapp.test.espresso.example
 import com.example.android.architecture.blueprints.todoapp.test.espresso.example.pom.screens.settings.GeneralSettingsScreen
 import com.example.android.architecture.blueprints.todoapp.test.espresso.example.pom.screens.settings.NotificationSettingsScreen
 import com.example.android.architecture.blueprints.todoapp.test.espresso.example.pom.screens.settings.WebViewSampleScreen
-import org.hamcrest.CoreMatchers
-import org.hamcrest.CoreMatchers.allOf
-import org.hamcrest.core.AllOf
+import org.hamcrest.CoreMatchers.instanceOf
+import org.hamcrest.core.AllOf.allOf
 
 class SettingsScreen {
     private val generalButton = onView(allOf(withId(R.id.title), withText(R.string.pref_header_general)))
     private val notificationsButton = onView(allOf(withId(R.id.title), withText(R.string.pref_header_notifications)))
     private val dataSyncButton = onView(allOf(withId(R.id.title), withText(R.string.pref_header_data_sync)))
     private val webViewSampleButton = onView(allOf(withId(R.id.title), withText(R.string.pref_header_webview_sample)))
-    private val toolbarBackButton = onView(AllOf.allOf(CoreMatchers.instanceOf(ImageButton::class.java),
+    private val toolbarBackButton = onView(allOf(instanceOf(ImageButton::class.java),
             ViewMatchers.withParent(withId(R.id.toolbar))))
 
     fun clickOnGeneralButton(): GeneralSettingsScreen {

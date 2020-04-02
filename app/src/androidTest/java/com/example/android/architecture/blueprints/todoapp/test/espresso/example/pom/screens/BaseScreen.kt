@@ -8,7 +8,7 @@ import com.example.android.architecture.blueprints.todoapp.R
 import org.hamcrest.CoreMatchers.instanceOf
 import org.hamcrest.core.AllOf.allOf
 
-class BaseScreen : ScreenObject() {
+open class BaseScreen : ScreenObject() {
 
     private val hamburgerMenuButton = onView(allOf(instanceOf(ImageButton::class.java),
             withParent(withId(R.id.toolbar))))

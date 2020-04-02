@@ -8,7 +8,7 @@ import android.support.test.espresso.matcher.ViewMatchers.withText
 import com.example.android.architecture.blueprints.todoapp.R
 import org.hamcrest.CoreMatchers.allOf
 
-class TodoListScreen {
+class TodoListScreen : BaseScreen() {
 
     private val newTaskFabButton = onView(withId(R.id.fab_add_task))
     private val menuFilterButton = onView(withId(R.id.menu_filter))

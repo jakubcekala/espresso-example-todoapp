@@ -8,7 +8,7 @@ import com.example.android.architecture.blueprints.todoapp.R
 import org.hamcrest.CoreMatchers.allOf
 import org.hamcrest.CoreMatchers.not
 
-class StatisticsScreen {
+class StatisticsScreen : BaseScreen() {
     private val okDialogButton = onView(allOf(withId(android.R.id.button1), withText(android.R.string.ok)))
     private val cancelDialogButton = onView(allOf(withId(android.R.id.button2), withText(android.R.string.cancel)))
     private val alertTitle = onView(withId(R.id.alertTitle))

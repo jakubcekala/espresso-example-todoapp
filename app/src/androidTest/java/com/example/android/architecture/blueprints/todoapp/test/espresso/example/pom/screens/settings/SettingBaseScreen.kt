@@ -1,20 +1,21 @@
 package com.example.android.architecture.blueprints.todoapp.test.espresso.example.pom.screens.settings
 
-import android.support.test.espresso.Espresso
-import android.support.test.espresso.action.ViewActions
-import android.support.test.espresso.matcher.ViewMatchers
+import android.support.test.espresso.Espresso.onView
+import android.support.test.espresso.action.ViewActions.click
+import android.support.test.espresso.matcher.ViewMatchers.withId
+import android.support.test.espresso.matcher.ViewMatchers.withParent
 import android.widget.ImageButton
 import com.example.android.architecture.blueprints.todoapp.R
 import com.example.android.architecture.blueprints.todoapp.test.espresso.example.pom.screens.SettingsScreen
-import org.hamcrest.CoreMatchers
-import org.hamcrest.core.AllOf
+import org.hamcrest.CoreMatchers.allOf
+import org.hamcrest.CoreMatchers.instanceOf
 
 abstract class SettingBaseScreen {
-    private val toolbarBackButton = Espresso.onView(AllOf.allOf(CoreMatchers.instanceOf(ImageButton::class.java),
-            ViewMatchers.withParent(ViewMatchers.withId(R.id.toolbar))))
+    private val toolbarBackButton = onView(allOf(instanceOf(ImageButton::class.java),
+            withParent(withId(R.id.toolbar))))
 
     fun clickOnBackToolbarButton(): SettingsScreen {
-        toolbarBackButton.perform(ViewActions.click())
+        toolbarBackButton.perform(click())
         return SettingsScreen()
     }
 }

@@ -3,8 +3,11 @@ package com.example.android.architecture.blueprints.todoapp.test.espresso.exampl
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.action.ViewActions.typeText
+import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers.*
+import android.widget.RelativeLayout
 import com.example.android.architecture.blueprints.todoapp.R
+import org.hamcrest.CoreMatchers.instanceOf
 import org.hamcrest.core.AllOf.allOf
 
 class GeneralSettingsScreen : SettingBaseScreen() {
@@ -23,11 +26,13 @@ class GeneralSettingsScreen : SettingBaseScreen() {
     }
 
     fun verifyEmailInEmailToShareTile(email: String) {
-        //TODO get text form label and compare to predicted one
+        val emailLabel = onView(allOf(withText(email), withParent(instanceOf(RelativeLayout::class.java))))
+        emailLabel.check(matches(isDisplayed()))
     }
 
-    fun verifyTitleInSortByTile() {
-        //TODO get text form label and compare to predicted one
+    fun verifyTitleInSortByTile(sortType: SortType) {
+        val sortItemTile = onView(allOf(withText(sortType.text), withParent(instanceOf(RelativeLayout::class.java))))
+        sortItemTile.check(matches(isDisplayed()))
     }
 
     inner class SortByDialog {
@@ -51,9 +56,9 @@ class GeneralSettingsScreen : SettingBaseScreen() {
     }
 
     inner class EmailToShareDialog {
-        private val creationDateTile = onView(allOf(withId(android.R.id.text1), withText("Creation date")))
-        private val updateDateTile = onView(allOf(withId(android.R.id.text1), withText("Update date")))
-        private val titleTile = onView(allOf(withId(android.R.id.text1), withText("Title")))
+        private val creationDateTile = onView(allOf(withId(android.R.id.text1), withText(SortType.CREATION_DATE.text)))
+        private val updateDateTile = onView(allOf(withId(android.R.id.text1), withText(SortType.UPDATE_DATE.text)))
+        private val titleTile = onView(allOf(withId(android.R.id.text1), withText(SortType.TITLE.text)))
 
         fun selectCreationDate(): GeneralSettingsScreen {
             creationDateTile.perform(click())
@@ -68,5 +73,11 @@ class GeneralSettingsScreen : SettingBaseScreen() {
             titleTile.perform(click())
             return GeneralSettingsScreen()
         }
+    }
+
+    enum class SortType(val text: String) {
+        CREATION_DATE("Creation date"),
+        UPDATE_DATE("Update date"),
+        TITLE("Title")
     }
 }

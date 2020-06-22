@@ -66,12 +66,14 @@ class TodoListScreen : BaseScreen() {
         return AddEditTaskScreen()
     }
 
-    fun clickOnMenuFilterButton() {
+    fun clickOnMenuFilterButton(): TodoListScreen {
         menuFilterButton.perform(click())
+        return TodoListScreen()
     }
 
-    fun checkIfTasksClearedSnackbarIsVisible() {
+    fun checkIfTasksClearedSnackbarIsVisible(): TodoListScreen {
         completedTasksClearedSnackbar.check(matches(isDisplayed()))
                 .check(matches(withText(R.string.completed_tasks_cleared)))
+        return TodoListScreen()
     }
 }

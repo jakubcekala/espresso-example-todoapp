@@ -3,8 +3,8 @@ package com.example.android.architecture.blueprints.todoapp.test.espresso.exampl
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.Espresso.openContextualActionModeOverflowMenu
 import android.support.test.espresso.action.ViewActions.click
-import android.support.test.espresso.matcher.ViewMatchers.withId
-import android.support.test.espresso.matcher.ViewMatchers.withText
+import android.support.test.espresso.assertion.ViewAssertions.matches
+import android.support.test.espresso.matcher.ViewMatchers.*
 import com.example.android.architecture.blueprints.todoapp.R
 import org.hamcrest.CoreMatchers.allOf
 
@@ -21,38 +21,44 @@ class TodoListScreen : BaseScreen() {
     private val activeFilterTile = onView(allOf(withId(R.id.title), withText(R.string.nav_active)))
     private val completedFilterTile = onView(allOf(withId(R.id.title), withText(R.string.nav_completed)))
 
-    fun selectClearCompletedFromContextualMenu() {
+    private val completedTasksClearedSnackbar = onView(withId(android.support.design.R.id.snackbar_text))
+
+    fun selectClearCompletedFromContextualMenu(): TodoListScreen {
         openContextualActionModeOverflowMenu()
         clearCompletedMenuTile.perform(click())
+        checkIfTasksClearedSnackbarIsVisible()
+        return TodoListScreen()
     }
 
-    fun selectRefreshFromContextualMenu() {
+    fun selectRefreshFromContextualMenu(): TodoListScreen {
         openContextualActionModeOverflowMenu()
         refreshMenuTile.perform(click())
+        return TodoListScreen()
     }
 
-    fun selectShareFromContextualMenu() {
+    fun selectShareFromContextualMenu(): TodoListScreen {
         openContextualActionModeOverflowMenu()
         shareMenuTile.perform(click())
+        return TodoListScreen()
+        //TODO Temporary solution. In the future Implement system 'Share to' PO model to interact with system items
     }
 
-    fun showAllTasks() {
+    fun showAllTasks(): TodoListScreen {
         clickOnMenuFilterButton()
         allFilterTile.perform(click())
+        return TodoListScreen()
     }
 
-    fun showActiveTasks() {
+    fun showActiveTasks(): TodoListScreen {
         clickOnMenuFilterButton()
         activeFilterTile.perform(click())
+        return TodoListScreen()
     }
 
-    fun showCompletedTasks() {
+    fun showCompletedTasks(): TodoListScreen {
         clickOnMenuFilterButton()
         completedFilterTile.perform(click())
-    }
-
-    fun selectAllTasksFilter() {
-        clickOnMenuFilterButton()
+        return TodoListScreen()
     }
 
     fun clickOnFABButton(): AddEditTaskScreen {
@@ -62,5 +68,10 @@ class TodoListScreen : BaseScreen() {
 
     fun clickOnMenuFilterButton() {
         menuFilterButton.perform(click())
+    }
+
+    fun checkIfTasksClearedSnackbarIsVisible() {
+        completedTasksClearedSnackbar.check(matches(isDisplayed()))
+                .check(matches(withText(R.string.completed_tasks_cleared)))
     }
 }

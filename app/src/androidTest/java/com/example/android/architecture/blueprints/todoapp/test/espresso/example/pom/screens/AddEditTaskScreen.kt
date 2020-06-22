@@ -16,37 +16,41 @@ class AddEditTaskScreen {
     private val toolbarBackButton = onView(AllOf.allOf(CoreMatchers.instanceOf(ImageButton::class.java),
             ViewMatchers.withParent(withId(R.id.toolbar))))
 
-    fun enterTaskTitle(title: String) {
+    fun enterTaskTitle(title: String): AddEditTaskScreen {
         taskTitleEditText.perform(typeText(title), closeSoftKeyboard())
+        return AddEditTaskScreen()
     }
 
-    fun enterTaskDescription(description: String) {
+    fun enterTaskDescription(description: String): AddEditTaskScreen {
         taskDescriptionEditText.perform(typeText(description), closeSoftKeyboard())
+        return AddEditTaskScreen()
     }
 
-    fun updateTaskTitle(title: String) {
+    fun updateTaskTitle(title: String): AddEditTaskScreen {
         taskTitleEditText.perform(clearText(), typeText(title), closeSoftKeyboard())
+        return AddEditTaskScreen()
     }
 
-    fun updateTaskDescription(description: String) {
+    fun updateTaskDescription(description: String): AddEditTaskScreen {
         taskDescriptionEditText.perform(clearText(), typeText(description), closeSoftKeyboard())
+        return AddEditTaskScreen()
     }
 
-    fun clickOnConfirmFabButton(): TodoListScreen {
+    fun clickOnConfirmFabButton(): AddEditTaskScreen {
         confirmFabButton.perform(click())
-        return TodoListScreen()
+        return AddEditTaskScreen()
     }
 
     fun addNewTask(title: String, description: String): TodoListScreen {
-        enterTaskTitle(title)
-        enterTaskDescription(description)
+        enterTaskTitle(title).
+        enterTaskDescription(description).
         clickOnConfirmFabButton()
         return TodoListScreen()
     }
 
     fun updateTask(title: String, description: String): TodoListScreen {
-        updateTaskTitle(title)
-        updateTaskDescription(description)
+        updateTaskTitle(title).
+        updateTaskDescription(description).
         clickOnConfirmFabButton()
         return TodoListScreen()
     }

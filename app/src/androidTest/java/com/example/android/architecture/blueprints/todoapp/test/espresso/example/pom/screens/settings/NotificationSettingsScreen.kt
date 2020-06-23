@@ -14,12 +14,14 @@ open class NotificationSettingsScreen : SettingBaseScreen() {
     private val enableNotificationButton = onView(allOf(withId(android.R.id.title), withText(R.string.pref_title_new_message_notifications)))
     private val enableNotificationSwitch = onView(allOf(withId(android.R.id.switch_widget), withParent(withId(android.R.id.widget_frame))))
 
-    fun clickOnSendNotificationButton() {
+    fun clickOnSendNotificationButton(): NotificationSettingsScreen {
         sendNotificationButton.perform(click())
+        return NotificationSettingsScreen()
     }
 
-    fun clickOnSendNotificationWIthDelayButton() {
+    fun clickOnSendNotificationWIthDelayButton(): NotificationSettingsScreen {
         sendNotificationButtonWithDelayButton.perform(click())
+        return NotificationSettingsScreen()
     }
 
     fun enableNotification(): EnableNotificationOnNotificationSettingsScreen {
@@ -28,6 +30,15 @@ open class NotificationSettingsScreen : SettingBaseScreen() {
         } else {
             enableNotificationButton.perform(click())
             EnableNotificationOnNotificationSettingsScreen()
+        }
+    }
+
+    fun disableNotification(): NotificationSettingsScreen {
+        return if (isEnableNotificationSubmenuDisplayed()) {
+            enableNotificationButton.perform(click())
+            NotificationSettingsScreen()
+        } else {
+            NotificationSettingsScreen()
         }
     }
 
@@ -58,11 +69,12 @@ open class NotificationSettingsScreen : SettingBaseScreen() {
             return RingtoneDialog()
         }
 
-        fun turnOnVibrate() {
-            if (isVibrateCheckboxChecked()) {
-                return
+        fun turnOnVibrate(): EnableNotificationOnNotificationSettingsScreen {
+            return if (isVibrateCheckboxChecked()) {
+                EnableNotificationOnNotificationSettingsScreen()
             } else {
                 vibrateButton.perform(click())
+                EnableNotificationOnNotificationSettingsScreen()
             }
         }
 

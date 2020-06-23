@@ -1,5 +1,6 @@
 package com.example.android.architecture.blueprints.todoapp.test.espresso.example.pom.screens
 
+import android.support.test.InstrumentationRegistry
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.assertion.ViewAssertions.matches
@@ -14,30 +15,45 @@ class StatisticsScreen : BaseScreen() {
     private val alertTitle = onView(withId(R.id.alertTitle))
     private val alertMessageTextView = onView(withId(android.R.id.message))
 
-    private val statisticTextView = onView(allOf(withId(R.id.statistics), withText(R.string.statistics_no_tasks)))
+    private val statisticEmptyTextView = onView(allOf(withId(R.id.statistics), withText(R.string.statistics_no_tasks)))
     private val statisticHeader = onView(allOf(withParent(withId(R.id.toolbar)), withText(R.string.statistics_title)))
 
-    fun clickOkAlertDialog() {
+    fun clickOkAlertDialog(): StatisticsScreen {
         okDialogButton.perform(click())
+        return StatisticsScreen()
     }
 
-    fun clickCancelAlertDialog() {
+    fun clickCancelAlertDialog(): StatisticsScreen {
         cancelDialogButton.perform(click())
+        return StatisticsScreen()
     }
 
-    fun checkAlertDialogDisplay() {
+    fun checkAlertDialogDisplay(): StatisticsScreen {
         alertTitle.check(matches(isDisplayed()))
         alertMessageTextView.check(matches(isDisplayed()))
+        return StatisticsScreen()
     }
 
-    fun checkAlertDialogNotDisplayed() {
+    fun checkAlertDialogNotDisplayed(): StatisticsScreen {
         alertTitle.check(matches(not(isDisplayed())))
         alertMessageTextView.check(matches(not(isDisplayed())))
-        
+        return StatisticsScreen()
     }
 
-    fun verifyStatisticScreen() {
-        statisticTextView.check(matches(isDisplayed()))
+    fun verifyEmptyStatisticScreen(): StatisticsScreen {
+        statisticEmptyTextView.check(matches(isDisplayed()))
         statisticHeader.check(matches(isDisplayed()))
+        return StatisticsScreen()
+    }
+
+    fun verifyNotEmptyStatisticScreen(activeTask: Int, completedTasks: Int): StatisticsScreen {
+        val statisticNotEmptyTextView = onView(allOf(withText(
+                InstrumentationRegistry.getInstrumentation().targetContext.resources.
+                    getString(R.string.statistics_active_tasks) + " " + activeTask + "\n" +
+                InstrumentationRegistry.getInstrumentation().targetContext.resources.
+                    getString(R.string.statistics_completed_tasks) + " " + completedTasks)))
+        statisticNotEmptyTextView.check(matches(isDisplayed()))
+        statisticHeader.check(matches(isDisplayed()))
+        return StatisticsScreen()
     }
 }

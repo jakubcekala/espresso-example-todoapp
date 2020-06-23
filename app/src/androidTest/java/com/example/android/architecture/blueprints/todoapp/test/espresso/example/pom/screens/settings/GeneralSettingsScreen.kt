@@ -40,8 +40,9 @@ class GeneralSettingsScreen : SettingBaseScreen() {
         private val okButton = onView(allOf(withId(android.R.id.button1), withText(android.R.string.ok)))
         private val cancelButton = onView(allOf(withId(android.R.id.button2), withText(android.R.string.cancel)))
 
-        fun enterEmail(email: String) {
+        fun enterEmail(email: String): EmailToShareDialog {
             emailEditText.perform(typeText(email))
+            return EmailToShareDialog()
         }
 
         fun clickOnOkButton(): GeneralSettingsScreen {

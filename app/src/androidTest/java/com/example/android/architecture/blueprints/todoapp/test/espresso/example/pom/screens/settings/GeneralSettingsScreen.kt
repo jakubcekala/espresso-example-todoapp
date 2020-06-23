@@ -35,7 +35,7 @@ class GeneralSettingsScreen : SettingBaseScreen() {
         sortItemTile.check(matches(isDisplayed()))
     }
 
-    inner class SortByDialog {
+    inner class EmailToShareDialog {
         private val emailEditText = onView(withId(android.R.id.edit))
         private val okButton = onView(allOf(withId(android.R.id.button1), withText(android.R.string.ok)))
         private val cancelButton = onView(allOf(withId(android.R.id.button2), withText(android.R.string.cancel)))
@@ -55,7 +55,7 @@ class GeneralSettingsScreen : SettingBaseScreen() {
         }
     }
 
-    inner class EmailToShareDialog {
+    inner class SortByDialog {
         private val creationDateTile = onView(allOf(withId(android.R.id.text1), withText(SortType.CREATION_DATE.text)))
         private val updateDateTile = onView(allOf(withId(android.R.id.text1), withText(SortType.UPDATE_DATE.text)))
         private val titleTile = onView(allOf(withId(android.R.id.text1), withText(SortType.TITLE.text)))

@@ -21,7 +21,7 @@ class TodoListScreen : BaseScreen() {
     private val activeFilterTile = onView(allOf(withId(R.id.title), withText(R.string.nav_active)))
     private val completedFilterTile = onView(allOf(withId(R.id.title), withText(R.string.nav_completed)))
 
-    private val completedTasksClearedSnackbar = onView(withId(android.support.design.R.id.snackbar_text))
+    private val snackbar = onView(withId(android.support.design.R.id.snackbar_text))
 
     fun selectClearCompletedFromContextualMenu(): TodoListScreen {
         openContextualActionModeOverflowMenu()
@@ -72,8 +72,14 @@ class TodoListScreen : BaseScreen() {
     }
 
     fun checkIfTasksClearedSnackbarIsVisible(): TodoListScreen {
-        completedTasksClearedSnackbar.check(matches(isDisplayed()))
+        snackbar.check(matches(isDisplayed()))
                 .check(matches(withText(R.string.completed_tasks_cleared)))
+        return TodoListScreen()
+    }
+
+    fun checkIfToDoSavedSnackbarIsVisible(): TodoListScreen {
+        snackbar.check(matches(isDisplayed()))
+                .check(matches(withText(R.string.successfully_saved_task_message)))
         return TodoListScreen()
     }
 }

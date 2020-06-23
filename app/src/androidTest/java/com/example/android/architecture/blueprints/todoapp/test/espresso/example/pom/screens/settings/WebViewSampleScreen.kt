@@ -6,4 +6,5 @@ import com.example.android.architecture.blueprints.todoapp.R
 
 class WebViewSampleScreen : SettingBaseScreen() {
     private val webView = onView(withId(R.id.web_view))
+    //TODO Handle WebView components
 }

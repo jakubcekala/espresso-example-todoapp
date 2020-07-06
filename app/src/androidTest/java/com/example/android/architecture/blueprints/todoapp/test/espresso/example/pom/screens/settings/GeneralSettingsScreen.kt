@@ -1,8 +1,7 @@
 package com.example.android.architecture.blueprints.todoapp.test.espresso.example.pom.screens.settings
 
 import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.action.ViewActions.click
-import android.support.test.espresso.action.ViewActions.typeText
+import android.support.test.espresso.action.ViewActions.*
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers.*
 import android.widget.RelativeLayout
@@ -42,7 +41,12 @@ class GeneralSettingsScreen : SettingBaseScreen() {
 
         fun enterEmail(email: String): EmailToShareDialog {
             emailEditText.perform(typeText(email))
-            return EmailToShareDialog()
+            return this
+        }
+
+        fun clearEmail(): EmailToShareDialog {
+            emailEditText.perform(clearText())
+            return this
         }
 
         fun clickOnOkButton(): GeneralSettingsScreen {

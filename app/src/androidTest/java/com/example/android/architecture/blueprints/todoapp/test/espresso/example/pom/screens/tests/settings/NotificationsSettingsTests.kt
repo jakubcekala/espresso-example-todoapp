@@ -11,7 +11,7 @@ class NotificationsSettingsTests: BaseTest() {
     lateinit var notificationSettingsScreen: NotificationSettingsScreen
 
     @Before
-    fun goToGeneralSettingScreen() {
+    fun goToNotificationSettingScreen() {
         notificationSettingsScreen = TodoListScreen().openHamburgerMenu().
             clickOnSettingsButton().clickOnNotificationButton()
     }

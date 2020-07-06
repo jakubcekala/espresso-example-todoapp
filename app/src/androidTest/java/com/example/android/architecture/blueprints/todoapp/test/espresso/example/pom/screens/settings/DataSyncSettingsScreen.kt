@@ -2,14 +2,16 @@ package com.example.android.architecture.blueprints.todoapp.test.espresso.exampl
 
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.action.ViewActions.click
-import android.support.test.espresso.matcher.ViewMatchers.withId
-import android.support.test.espresso.matcher.ViewMatchers.withText
+import android.support.test.espresso.assertion.ViewAssertions.matches
+import android.support.test.espresso.matcher.ViewMatchers.*
+import android.widget.RelativeLayout
 import com.example.android.architecture.blueprints.todoapp.R
+import org.hamcrest.CoreMatchers
 import org.hamcrest.Matchers.allOf
 
 class DataSyncSettingsScreen : SettingBaseScreen() {
-    private val syncFrequencyButton = onView(allOf(withId(R.id.title), withText(R.string.pref_title_sync_frequency)))
-    private val systemSyncSettingsButton = onView(allOf(withId(R.id.title), withText(R.string.pref_title_system_sync_settings)))
+    private val syncFrequencyButton = onView( withText(R.string.pref_title_sync_frequency))
+    private val systemSyncSettingsButton = onView( withText(R.string.pref_title_system_sync_settings))
 
     fun clickOnSyncFrequencyButton(): SyncFrequencyDialog {
         syncFrequencyButton.perform(click())
@@ -20,9 +22,14 @@ class DataSyncSettingsScreen : SettingBaseScreen() {
         systemSyncSettingsButton.perform(click())
     }
 
+    fun verifySetFrequency(selectedFreq: SyncFrequency) {
+        val sortItemTile = onView(allOf(withText(selectedFreq.freq), withParent(CoreMatchers.instanceOf(RelativeLayout::class.java))))
+        sortItemTile.check(matches(isDisplayed()))
+    }
+
     inner class SyncFrequencyDialog {
         fun selectSyncFrequency(freq: SyncFrequency): DataSyncSettingsScreen {
-            onView(allOf(withId(android.R.id.text1), withText(freq.freq)))
+            onView(allOf(withId(android.R.id.text1), withText(freq.freq))).perform(click())
             return DataSyncSettingsScreen()
         }
     }

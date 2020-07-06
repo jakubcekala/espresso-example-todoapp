@@ -15,10 +15,10 @@ import org.hamcrest.CoreMatchers.instanceOf
 import org.hamcrest.core.AllOf.allOf
 
 class SettingsScreen {
-    private val generalButton = onView(allOf(withId(R.id.title), withText(R.string.pref_header_general)))
-    private val notificationsButton = onView(allOf(withId(R.id.title), withText(R.string.pref_header_notifications)))
-    private val dataSyncButton = onView(allOf(withId(R.id.title), withText(R.string.pref_header_data_sync)))
-    private val webViewSampleButton = onView(allOf(withId(R.id.title), withText(R.string.pref_header_webview_sample)))
+    private val generalButton = onView(withText(R.string.pref_header_general))
+    private val notificationsButton = onView(withText(R.string.pref_header_notifications))
+    private val dataSyncButton = onView(withText(R.string.pref_header_data_sync))
+    private val webViewSampleButton = onView( withText(R.string.pref_header_webview_sample))
     private val toolbarBackButton = onView(allOf(instanceOf(ImageButton::class.java),
             ViewMatchers.withParent(withId(R.id.toolbar))))
 

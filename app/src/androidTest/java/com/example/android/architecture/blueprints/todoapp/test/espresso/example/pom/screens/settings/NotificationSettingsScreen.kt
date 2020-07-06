@@ -42,7 +42,7 @@ open class NotificationSettingsScreen : SettingBaseScreen() {
         }
     }
 
-    private fun isEnableNotificationSubmenuDisplayed(): Boolean {
+    fun isEnableNotificationSubmenuDisplayed(): Boolean {
         return try {
             onView(allOf(withId(android.R.id.title), withText(R.string.slider_title))).check(matches(isDisplayed()))
             onView(allOf(withId(android.R.id.title), withText(R.string.pref_title_ringtone))).check(matches(isDisplayed()))
@@ -78,7 +78,16 @@ open class NotificationSettingsScreen : SettingBaseScreen() {
             }
         }
 
-        private fun isVibrateCheckboxChecked(): Boolean {
+        fun turnOffVibrate(): EnableNotificationOnNotificationSettingsScreen {
+            return if (!isVibrateCheckboxChecked()) {
+                EnableNotificationOnNotificationSettingsScreen()
+            } else {
+                vibrateButton.perform(click())
+                EnableNotificationOnNotificationSettingsScreen()
+            }
+        }
+
+        fun isVibrateCheckboxChecked(): Boolean {
             return try {
                 vibrateCheckbox.check(matches(isChecked()))
                 true

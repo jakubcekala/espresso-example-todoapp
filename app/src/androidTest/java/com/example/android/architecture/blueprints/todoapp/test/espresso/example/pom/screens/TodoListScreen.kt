@@ -7,6 +7,7 @@ import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers.*
 import com.example.android.architecture.blueprints.todoapp.R
 import org.hamcrest.CoreMatchers.allOf
+import org.hamcrest.CoreMatchers.not
 
 class TodoListScreen : BaseScreen() {
 
@@ -86,5 +87,9 @@ class TodoListScreen : BaseScreen() {
 
     fun checkIfTaskIsDisplayed(taskTitle: String) {
         onView(withText(taskTitle)).check(matches(isDisplayed()))
+    }
+
+    fun checkIfTaskIsNotDisplayed(taskTitle: String) {
+        onView(withText(taskTitle)).check(matches(not(isDisplayed())))
     }
 }

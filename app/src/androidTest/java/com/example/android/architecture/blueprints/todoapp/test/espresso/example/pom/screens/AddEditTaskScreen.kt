@@ -69,7 +69,7 @@ class AddEditTaskScreen {
         return AddEditTaskScreen()
     }
 
-    fun checkIfTitleSnackbarIsDisplayed(): AddEditTaskScreen {
+    fun checkErrorSnackbarIsDisplayed(): AddEditTaskScreen {
         titleErrorSnackbar.check(matches(isDisplayed()))
                 .check(matches(withText(R.string.empty_task_message)))
         return AddEditTaskScreen()

@@ -2,6 +2,7 @@ package com.example.android.architecture.blueprints.todoapp.test.espresso.exampl
 
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.Espresso.openContextualActionModeOverflowMenu
+import android.support.test.espresso.NoMatchingViewException
 import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers.*
@@ -9,6 +10,7 @@ import android.widget.CheckBox
 import android.widget.LinearLayout
 import com.example.android.architecture.blueprints.todoapp.R
 import org.hamcrest.CoreMatchers.*
+import java.lang.Exception
 
 class TodoListScreen : BaseScreen() {
 
@@ -87,12 +89,18 @@ class TodoListScreen : BaseScreen() {
         return TodoListScreen()
     }
 
-    fun checkIfTaskIsDisplayed(taskTitle: String) {
+    fun checkIfTaskIsDisplayed(taskTitle: String): TodoListScreen {
         onView(withText(taskTitle)).check(matches(isDisplayed()))
+        return TodoListScreen()
     }
 
-    fun checkIfTaskIsNotDisplayed(taskTitle: String) {
-        onView(withText(taskTitle)).check(matches(not(isDisplayed())))
+    fun checkIfTaskIsNotDisplayed(taskTitle: String): TodoListScreen {
+        try {
+            onView(withText(taskTitle)).check(matches(isDisplayed()))
+            throw Exception("Task $taskTitle displays in list but is should not")
+        } catch (e: NoMatchingViewException) {
+            return TodoListScreen()
+        }
     }
 
     fun enterTaskDetails(taskName: String): TaskDetailsScreen {
@@ -116,5 +124,21 @@ class TodoListScreen : BaseScreen() {
     fun checkIfListIsEmpty(): TodoListScreen {
         noTasksIcon.check(matches(isDisplayed()))
         return TodoListScreen()
+    }
+
+    fun waitForSnackbarDisappearing(): TodoListScreen {
+        while (isSnackbarDisplayed()) {
+            Thread.sleep(1000)
+        }
+        return TodoListScreen()
+    }
+
+    fun isSnackbarDisplayed(): Boolean {
+        return try {
+            snackbar.check(matches(isDisplayed()))
+            true
+        } catch (e: Exception) {
+            false
+        }
     }
 }

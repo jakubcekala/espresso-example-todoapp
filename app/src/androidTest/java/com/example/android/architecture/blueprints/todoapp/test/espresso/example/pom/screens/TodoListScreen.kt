@@ -5,9 +5,10 @@ import android.support.test.espresso.Espresso.openContextualActionModeOverflowMe
 import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers.*
+import android.widget.CheckBox
+import android.widget.LinearLayout
 import com.example.android.architecture.blueprints.todoapp.R
-import org.hamcrest.CoreMatchers.allOf
-import org.hamcrest.CoreMatchers.not
+import org.hamcrest.CoreMatchers.*
 
 class TodoListScreen : BaseScreen() {
 
@@ -91,5 +92,23 @@ class TodoListScreen : BaseScreen() {
 
     fun checkIfTaskIsNotDisplayed(taskTitle: String) {
         onView(withText(taskTitle)).check(matches(not(isDisplayed())))
+    }
+
+    fun enterTaskDetails(taskName: String): TaskDetailsScreen {
+        onView(allOf(withText(taskName), withParent(instanceOf(LinearLayout::class.java))))
+                .perform(click())
+        return TaskDetailsScreen()
+    }
+
+    fun markTaskAsCompleted(taskName: String): TodoListScreen {
+        onView(allOf(instanceOf(CheckBox::class.java), hasSibling(withText(taskName))))
+                .perform(click())
+        return TodoListScreen()
+    }
+
+    fun taskMarkedAsCompleteSnackbarIsVisible(): TodoListScreen {
+        snackbar.check(matches(isDisplayed())).
+        check(matches(withText(R.string.task_marked_complete)))
+        return TodoListScreen()
     }
 }

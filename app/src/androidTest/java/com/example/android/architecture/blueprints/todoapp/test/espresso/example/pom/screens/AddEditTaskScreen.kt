@@ -16,7 +16,7 @@ class AddEditTaskScreen {
     private val confirmFabButton = onView(withId(R.id.fab_edit_task_done))
     private val toolbarBackButton = onView(AllOf.allOf(CoreMatchers.instanceOf(ImageButton::class.java),
             withParent(withId(R.id.toolbar))))
-    private val titleErrorSnackbar = onView(withId(android.support.design.R.id.snackbar_text))
+    private val snackbar = onView(withId(android.support.design.R.id.snackbar_text))
 
     fun enterTaskTitle(title: String): AddEditTaskScreen {
         taskTitleEditText.perform(typeText(title), closeSoftKeyboard())
@@ -70,7 +70,7 @@ class AddEditTaskScreen {
     }
 
     fun checkErrorSnackbarIsDisplayed(): AddEditTaskScreen {
-        titleErrorSnackbar.check(matches(isDisplayed()))
+        snackbar.check(matches(isDisplayed()))
                 .check(matches(withText(R.string.empty_task_message)))
         return AddEditTaskScreen()
     }

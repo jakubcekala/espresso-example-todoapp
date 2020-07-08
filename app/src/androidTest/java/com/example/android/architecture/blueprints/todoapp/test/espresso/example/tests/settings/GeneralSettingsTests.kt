@@ -1,8 +1,8 @@
-package com.example.android.architecture.blueprints.todoapp.test.espresso.example.pom.screens.tests.settings
+package com.example.android.architecture.blueprints.todoapp.test.espresso.example.tests.settings
 
 import com.example.android.architecture.blueprints.todoapp.test.espresso.example.pom.screens.TodoListScreen
 import com.example.android.architecture.blueprints.todoapp.test.espresso.example.pom.screens.settings.GeneralSettingsScreen
-import com.example.android.architecture.blueprints.todoapp.test.espresso.example.pom.screens.tests.BaseTest
+import com.example.android.architecture.blueprints.todoapp.test.espresso.example.tests.BaseTest
 import org.junit.Before
 import org.junit.Test
 

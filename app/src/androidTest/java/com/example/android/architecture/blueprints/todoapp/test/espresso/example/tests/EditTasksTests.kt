@@ -1,4 +1,4 @@
-package com.example.android.architecture.blueprints.todoapp.test.espresso.example.pom.screens.tests
+package com.example.android.architecture.blueprints.todoapp.test.espresso.example.tests
 
 import com.example.android.architecture.blueprints.todoapp.test.espresso.example.pom.screens.AddEditTaskScreen
 import com.example.android.architecture.blueprints.todoapp.test.espresso.example.pom.screens.TodoListScreen

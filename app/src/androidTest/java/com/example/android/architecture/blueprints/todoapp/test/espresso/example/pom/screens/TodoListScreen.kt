@@ -23,6 +23,7 @@ class TodoListScreen : BaseScreen() {
     private val activeFilterTile = onView(allOf(withId(R.id.title), withText(R.string.nav_active)))
     private val completedFilterTile = onView(allOf(withId(R.id.title), withText(R.string.nav_completed)))
     private val tasksList = onView(withId(R.id.tasks_list))
+    private val noTasksIcon = onView(withId(R.id.noTasks))
 
     private val snackbar = onView(withId(android.support.design.R.id.snackbar_text))
 
@@ -109,6 +110,11 @@ class TodoListScreen : BaseScreen() {
     fun taskMarkedAsCompleteSnackbarIsVisible(): TodoListScreen {
         snackbar.check(matches(isDisplayed())).
         check(matches(withText(R.string.task_marked_complete)))
+        return TodoListScreen()
+    }
+
+    fun checkIfListIsEmpty(): TodoListScreen {
+        noTasksIcon.check(matches(isDisplayed()))
         return TodoListScreen()
     }
 }

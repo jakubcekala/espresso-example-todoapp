@@ -28,7 +28,7 @@ class TaskDetailsScreen {
         return AddEditTaskScreen()
     }
 
-    fun clickOnBakButton(): TodoListScreen {
+    fun clickOnBackButton(): TodoListScreen {
         toolbarBackButton.perform(click())
         return TodoListScreen()
     }

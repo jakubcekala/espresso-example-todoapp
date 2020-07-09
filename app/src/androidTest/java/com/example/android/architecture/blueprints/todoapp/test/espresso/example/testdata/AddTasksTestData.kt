@@ -2,7 +2,7 @@ package com.example.android.architecture.blueprints.todoapp.test.espresso.exampl
 
 import java.util.*
 
-class AddTasksTestData {
+class TasksTestData {
     companion object {
         fun getTaskItem(): TaskModel {
             return TaskModel("Title" + Random().nextInt(), "Description" + Random().nextInt())

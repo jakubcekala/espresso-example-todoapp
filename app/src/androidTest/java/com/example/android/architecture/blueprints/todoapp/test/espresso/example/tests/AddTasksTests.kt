@@ -1,8 +1,8 @@
 package com.example.android.architecture.blueprints.todoapp.test.espresso.example.tests
 
 import com.example.android.architecture.blueprints.todoapp.test.espresso.example.pom.screens.TodoListScreen
-import com.example.android.architecture.blueprints.todoapp.test.espresso.example.testdata.AddTasksTestData
 import com.example.android.architecture.blueprints.todoapp.test.espresso.example.testdata.TaskModel
+import com.example.android.architecture.blueprints.todoapp.test.espresso.example.testdata.TasksTestData
 import org.junit.Before
 import org.junit.Test
 
@@ -12,7 +12,7 @@ class AddTasksTests: BaseTest() {
 
     @Before
     fun setTaskDetails() {
-        taskItem = AddTasksTestData.getTaskItem()
+        taskItem = TasksTestData.getTaskItem()
     }
 
     @Test

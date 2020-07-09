@@ -1,42 +1,53 @@
 package com.example.android.architecture.blueprints.todoapp.test.espresso.example.tests
 
 import com.example.android.architecture.blueprints.todoapp.test.espresso.example.pom.screens.TodoListScreen
+import com.example.android.architecture.blueprints.todoapp.test.espresso.example.testdata.AddTasksTestData
+import com.example.android.architecture.blueprints.todoapp.test.espresso.example.testdata.TaskModel
 import org.junit.Before
 import org.junit.Test
-import java.util.*
 
 class AddTasksTests: BaseTest() {
 
-    var taskTitle = ""
-    var taskDescription = ""
+    lateinit var taskItem: TaskModel
 
     @Before
     fun setTaskDetails() {
-        taskTitle = "Title" + Random().nextInt()
-        taskDescription = "Description" + Random().nextInt()
+        taskItem = AddTasksTestData.getTaskItem()
     }
 
     @Test
     fun addCorrectTask() {
-        TodoListScreen().clickOnFABButton().addNewTask(taskTitle, taskDescription).
-                checkIfToDoSavedSnackbarIsVisible().checkIfTaskIsDisplayed(taskTitle)
+        TodoListScreen()
+                .clickOnFABButton()
+                .addNewTask(taskItem.title, taskItem.description)
+                .checkIfToDoSavedSnackbarIsVisible()
+                .checkIfTaskIsDisplayed(taskItem.title)
     }
 
     @Test
     fun addEmptyTask() {
-        TodoListScreen().clickOnFABButton().clickOnConfirmFabButton().
-                checkIfTitleErrorIsDisplayed().checkErrorSnackbarIsDisplayed()
+        TodoListScreen()
+                .clickOnFABButton()
+                .clickOnConfirmFabButton()
+                .checkIfTitleErrorIsDisplayed()
+                .checkErrorSnackbarIsDisplayed()
     }
 
     @Test
     fun addTaskWithOnlyTitle() {
-        TodoListScreen().clickOnFABButton().addNewTask(taskTitle, "").
-                checkIfToDoSavedSnackbarIsVisible().checkIfTaskIsDisplayed(taskTitle)
+        TodoListScreen()
+                .clickOnFABButton()
+                .addNewTask(taskItem.title, taskItem.description)
+                .checkIfToDoSavedSnackbarIsVisible()
+                .checkIfTaskIsDisplayed(taskItem.title)
     }
 
     @Test
     fun addTaskWithOnlyDescription() {
-        TodoListScreen().clickOnFABButton().addNewTask("", taskDescription).
-                checkIfToDoSavedSnackbarIsVisible().checkIfTaskIsDisplayed(taskDescription)
+        TodoListScreen()
+                .clickOnFABButton()
+                .addNewTask("", taskItem.description).
+                checkIfToDoSavedSnackbarIsVisible()
+                .checkIfTaskIsDisplayed(taskItem.description)
     }
 }

@@ -8,7 +8,7 @@ import org.junit.Test
 
 class AddTasksTests: BaseTest() {
 
-    lateinit var taskItem: TaskModel
+    private lateinit var taskItem: TaskModel
 
     @Before
     fun setTaskDetails() {

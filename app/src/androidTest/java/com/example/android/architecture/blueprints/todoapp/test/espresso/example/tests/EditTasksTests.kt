@@ -2,50 +2,47 @@ package com.example.android.architecture.blueprints.todoapp.test.espresso.exampl
 
 import com.example.android.architecture.blueprints.todoapp.test.espresso.example.pom.screens.AddEditTaskScreen
 import com.example.android.architecture.blueprints.todoapp.test.espresso.example.pom.screens.TodoListScreen
+import com.example.android.architecture.blueprints.todoapp.test.espresso.example.testdata.TaskModel
+import com.example.android.architecture.blueprints.todoapp.test.espresso.example.testdata.TasksTestData
 import org.junit.Before
 import org.junit.Test
-import java.util.*
 
 class EditTasksTests: BaseTest() {
 
     private lateinit var editTaskScreen: AddEditTaskScreen
 
-    private var taskTitle = ""
-    private var taskDescription = ""
-    private var taskTitleEdited = ""
-    private var taskDescriptionEdited = ""
+    private lateinit var taskItem: TaskModel
+    private lateinit var taskItemEdited: TaskModel
 
     @Before
     fun setTaskDetails() {
-        taskTitle = "Title" + Random().nextInt()
-        taskDescription = "Description" + Random().nextInt()
-        taskTitleEdited = "Title" + Random().nextInt()
-        taskDescriptionEdited = "Description" + Random().nextInt()
+        taskItem = TasksTestData.getTaskItem()
+        taskItemEdited = TasksTestData.getTaskItem()
     }
 
     @Before
     fun addTaskToEdit() {
         editTaskScreen = TodoListScreen().clickOnFABButton().
-                addNewTask(taskTitle, taskDescription).
-                enterTaskDetails(taskTitle).clickOnEditFABButton()
+                addNewTask(taskItem.title, taskItem.description).
+                enterTaskDetails(taskItem.title).clickOnEditFABButton()
     }
 
     @Test
     fun editTaskCorrectly() {
-        editTaskScreen.updateTask(taskTitleEdited, taskDescriptionEdited).
-                checkIfTaskIsDisplayed(taskTitleEdited)
+        editTaskScreen.updateTask(taskItemEdited.title, taskItemEdited.description).
+                checkIfTaskIsDisplayed(taskItemEdited.title)
     }
 
     @Test
     fun editTaskEmptyTitle() {
-        editTaskScreen.updateTask("", taskDescriptionEdited).
-                checkIfTaskIsDisplayed(taskDescriptionEdited)
+        editTaskScreen.updateTask("", taskItemEdited.description).
+                checkIfTaskIsDisplayed(taskItemEdited.description)
     }
 
     @Test
     fun editTaskEmptyDescription() {
-        editTaskScreen.updateTask(taskTitleEdited,"").
-                checkIfTaskIsDisplayed(taskTitleEdited)
+        editTaskScreen.updateTask(taskItemEdited.title,"").
+                checkIfTaskIsDisplayed(taskItemEdited.title)
     }
 
     @Test

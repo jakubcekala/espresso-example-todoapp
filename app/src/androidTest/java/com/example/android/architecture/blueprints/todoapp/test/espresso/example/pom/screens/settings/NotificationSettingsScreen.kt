@@ -16,12 +16,12 @@ open class NotificationSettingsScreen : SettingBaseScreen() {
 
     fun clickOnSendNotificationButton(): NotificationSettingsScreen {
         sendNotificationButton.perform(click())
-        return NotificationSettingsScreen()
+        return this
     }
 
     fun clickOnSendNotificationWIthDelayButton(): NotificationSettingsScreen {
         sendNotificationButtonWithDelayButton.perform(click())
-        return NotificationSettingsScreen()
+        return this
     }
 
     fun enableNotification(): EnableNotificationOnNotificationSettingsScreen {
@@ -36,9 +36,9 @@ open class NotificationSettingsScreen : SettingBaseScreen() {
     fun disableNotification(): NotificationSettingsScreen {
         return if (isEnableNotificationSubmenuDisplayed()) {
             enableNotificationButton.perform(click())
-            NotificationSettingsScreen()
+            this
         } else {
-            NotificationSettingsScreen()
+            this
         }
     }
 
@@ -71,19 +71,19 @@ open class NotificationSettingsScreen : SettingBaseScreen() {
 
         fun turnOnVibrate(): EnableNotificationOnNotificationSettingsScreen {
             return if (isVibrateCheckboxChecked()) {
-                EnableNotificationOnNotificationSettingsScreen()
+                this
             } else {
                 vibrateButton.perform(click())
-                EnableNotificationOnNotificationSettingsScreen()
+                this
             }
         }
 
         fun turnOffVibrate(): EnableNotificationOnNotificationSettingsScreen {
             return if (!isVibrateCheckboxChecked()) {
-                EnableNotificationOnNotificationSettingsScreen()
+                this
             } else {
                 vibrateButton.perform(click())
-                EnableNotificationOnNotificationSettingsScreen()
+                this
             }
         }
 

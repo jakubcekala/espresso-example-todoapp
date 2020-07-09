@@ -36,12 +36,12 @@ class TaskDetailsScreen {
     fun markTaskAsCompleted(taskName: String): TaskDetailsScreen {
         onView(allOf(instanceOf(CheckBox::class.java), hasSibling(withText(taskName))))
                 .perform(click())
-        return TaskDetailsScreen()
+        return this
     }
 
     fun taskMarkedAsCompleteSnackbarIsVisible(): TaskDetailsScreen {
         snackbar.check(matches(isDisplayed())).
                 check(matches(withText(R.string.task_marked_complete)))
-        return TaskDetailsScreen()
+        return this
     }
 }

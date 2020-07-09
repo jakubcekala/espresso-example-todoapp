@@ -33,38 +33,38 @@ class TodoListScreen : BaseScreen() {
         openContextualActionModeOverflowMenu()
         clearCompletedMenuTile.perform(click())
         checkIfTasksClearedSnackbarIsVisible()
-        return TodoListScreen()
+        return this
     }
 
     fun selectRefreshFromContextualMenu(): TodoListScreen {
         openContextualActionModeOverflowMenu()
         refreshMenuTile.perform(click())
-        return TodoListScreen()
+        return this
     }
 
     fun selectShareFromContextualMenu(): TodoListScreen {
         openContextualActionModeOverflowMenu()
         shareMenuTile.perform(click())
-        return TodoListScreen()
+        return this
         //TODO Temporary solution. In the future Implement system 'Share to' PO model to interact with system items
     }
 
     fun showAllTasks(): TodoListScreen {
         clickOnMenuFilterButton()
         allFilterTile.perform(click())
-        return TodoListScreen()
+        return this
     }
 
     fun showActiveTasks(): TodoListScreen {
         clickOnMenuFilterButton()
         activeFilterTile.perform(click())
-        return TodoListScreen()
+        return this
     }
 
     fun showCompletedTasks(): TodoListScreen {
         clickOnMenuFilterButton()
         completedFilterTile.perform(click())
-        return TodoListScreen()
+        return this
     }
 
     fun clickOnFABButton(): AddEditTaskScreen {
@@ -74,24 +74,24 @@ class TodoListScreen : BaseScreen() {
 
     fun clickOnMenuFilterButton(): TodoListScreen {
         menuFilterButton.perform(click())
-        return TodoListScreen()
+        return this
     }
 
     fun checkIfTasksClearedSnackbarIsVisible(): TodoListScreen {
         snackbar.check(matches(isDisplayed()))
                 .check(matches(withText(R.string.completed_tasks_cleared)))
-        return TodoListScreen()
+        return this
     }
 
     fun checkIfToDoSavedSnackbarIsVisible(): TodoListScreen {
         snackbar.check(matches(isDisplayed()))
                 .check(matches(withText(R.string.successfully_saved_task_message)))
-        return TodoListScreen()
+        return this
     }
 
     fun checkIfTaskIsDisplayed(taskTitle: String): TodoListScreen {
         onView(withText(taskTitle)).check(matches(isDisplayed()))
-        return TodoListScreen()
+        return this
     }
 
     fun checkIfTaskIsNotDisplayed(taskTitle: String): TodoListScreen {
@@ -99,7 +99,7 @@ class TodoListScreen : BaseScreen() {
             onView(withText(taskTitle)).check(matches(isDisplayed()))
             throw Exception("Task $taskTitle displays in list but is should not")
         } catch (e: NoMatchingViewException) {
-            return TodoListScreen()
+            return this
         }
     }
 
@@ -112,25 +112,25 @@ class TodoListScreen : BaseScreen() {
     fun markTaskAsCompleted(taskName: String): TodoListScreen {
         onView(allOf(instanceOf(CheckBox::class.java), hasSibling(withText(taskName))))
                 .perform(click())
-        return TodoListScreen()
+        return this
     }
 
     fun taskMarkedAsCompleteSnackbarIsVisible(): TodoListScreen {
         snackbar.check(matches(isDisplayed())).
         check(matches(withText(R.string.task_marked_complete)))
-        return TodoListScreen()
+        return this
     }
 
     fun checkIfListIsEmpty(): TodoListScreen {
         noTasksIcon.check(matches(isDisplayed()))
-        return TodoListScreen()
+        return this
     }
 
     fun waitForSnackbarDisappearing(): TodoListScreen {
         while (isSnackbarDisplayed()) {
             Thread.sleep(1000)
         }
-        return TodoListScreen()
+        return this
     }
 
     fun isSnackbarDisplayed(): Boolean {

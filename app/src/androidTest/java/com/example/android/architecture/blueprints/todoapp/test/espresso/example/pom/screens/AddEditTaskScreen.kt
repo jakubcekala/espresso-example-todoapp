@@ -20,27 +20,27 @@ class AddEditTaskScreen {
 
     fun enterTaskTitle(title: String): AddEditTaskScreen {
         taskTitleEditText.perform(typeText(title), closeSoftKeyboard())
-        return AddEditTaskScreen()
+        return this
     }
 
     fun enterTaskDescription(description: String): AddEditTaskScreen {
         taskDescriptionEditText.perform(typeText(description), closeSoftKeyboard())
-        return AddEditTaskScreen()
+        return this
     }
 
     fun updateTaskTitle(title: String): AddEditTaskScreen {
         taskTitleEditText.perform(clearText(), typeText(title), closeSoftKeyboard())
-        return AddEditTaskScreen()
+        return this
     }
 
     fun updateTaskDescription(description: String): AddEditTaskScreen {
         taskDescriptionEditText.perform(clearText(), typeText(description), closeSoftKeyboard())
-        return AddEditTaskScreen()
+        return this
     }
 
     fun clickOnConfirmFabButton(): AddEditTaskScreen {
         confirmFabButton.perform(click())
-        return AddEditTaskScreen()
+        return this
     }
 
     fun addNewTask(title: String, description: String): TodoListScreen {
@@ -66,12 +66,12 @@ class AddEditTaskScreen {
         taskTitleEditText.check(matches(hasErrorText(
                 InstrumentationRegistry.getInstrumentation()
                 .targetContext.resources.getString(R.string.add_task_empty_title))))
-        return AddEditTaskScreen()
+        return this
     }
 
     fun checkErrorSnackbarIsDisplayed(): AddEditTaskScreen {
         snackbar.check(matches(isDisplayed()))
                 .check(matches(withText(R.string.empty_task_message)))
-        return AddEditTaskScreen()
+        return this
     }
 }

@@ -1,8 +1,10 @@
 package com.example.android.architecture.blueprints.todoapp.test.espresso.example.pom.screens
 
 import android.support.test.espresso.Espresso
+import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.action.ViewActions
 import android.support.test.espresso.matcher.ViewMatchers
+import android.support.test.espresso.matcher.ViewMatchers.isRoot
 
 abstract class ScreenObject {
     /**
@@ -23,8 +25,9 @@ abstract class ScreenObject {
         Thread.sleep(LONG_SLEEP_TIME_MS)
     }
 
-    fun pressBack() {
-        Espresso.onView(ViewMatchers.isRoot()).perform(ViewActions.pressBack())
+    fun pressBack(): ScreenObject {
+        onView(isRoot()).perform(ViewActions.pressBack())
+        return this
     }
 
     companion object {

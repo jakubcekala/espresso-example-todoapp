@@ -29,9 +29,10 @@ class GeneralSettingsScreen : SettingBaseScreen() {
         emailLabel.check(matches(isDisplayed()))
     }
 
-    fun verifyTitleInSortByTile(sortType: SortType) {
+    fun verifyTitleInSortByTile(sortType: SortType): GeneralSettingsScreen {
         val sortItemTile = onView(allOf(withText(sortType.text), withParent(instanceOf(RelativeLayout::class.java))))
         sortItemTile.check(matches(isDisplayed()))
+        return this
     }
 
     inner class EmailToShareDialog {

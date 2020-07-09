@@ -42,10 +42,11 @@ class HamburgerMenu : ScreenObject() {
         return BaseScreen()
     }
 
-    private fun verifyHamburgerMenuDisplay() {
+    private fun verifyHamburgerMenuDisplay(): HamburgerMenu {
         todoButton.check(matches(isDisplayed()))
         statisticsButton.check(matches(isDisplayed()))
         settingsButton.check(matches(isDisplayed()))
         navView.check(matches(isDisplayed()))
+        return this
     }
 }

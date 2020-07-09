@@ -20,30 +20,30 @@ class StatisticsScreen : BaseScreen() {
 
     fun clickOkAlertDialog(): StatisticsScreen {
         okDialogButton.perform(click())
-        return StatisticsScreen()
+        return this
     }
 
     fun clickCancelAlertDialog(): StatisticsScreen {
         cancelDialogButton.perform(click())
-        return StatisticsScreen()
+        return this
     }
 
     fun checkAlertDialogDisplay(): StatisticsScreen {
         alertTitle.check(matches(isDisplayed()))
         alertMessageTextView.check(matches(isDisplayed()))
-        return StatisticsScreen()
+        return this
     }
 
     fun checkAlertDialogNotDisplayed(): StatisticsScreen {
         alertTitle.check(matches(not(isDisplayed())))
         alertMessageTextView.check(matches(not(isDisplayed())))
-        return StatisticsScreen()
+        return this
     }
 
     fun verifyEmptyStatisticScreen(): StatisticsScreen {
         statisticEmptyTextView.check(matches(isDisplayed()))
         statisticHeader.check(matches(isDisplayed()))
-        return StatisticsScreen()
+        return this
     }
 
     fun verifyNotEmptyStatisticScreen(activeTask: Int, completedTasks: Int): StatisticsScreen {
@@ -54,6 +54,6 @@ class StatisticsScreen : BaseScreen() {
                     getString(R.string.statistics_completed_tasks) + " " + completedTasks)))
         statisticNotEmptyTextView.check(matches(isDisplayed()))
         statisticHeader.check(matches(isDisplayed()))
-        return StatisticsScreen()
+        return this
     }
 }

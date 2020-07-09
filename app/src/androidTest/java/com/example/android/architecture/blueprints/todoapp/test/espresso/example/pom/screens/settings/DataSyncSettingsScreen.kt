@@ -22,9 +22,10 @@ class DataSyncSettingsScreen : SettingBaseScreen() {
         systemSyncSettingsButton.perform(click())
     }
 
-    fun verifySetFrequency(selectedFreq: SyncFrequency) {
+    fun verifySetFrequency(selectedFreq: SyncFrequency): DataSyncSettingsScreen {
         val sortItemTile = onView(allOf(withText(selectedFreq.freq), withParent(CoreMatchers.instanceOf(RelativeLayout::class.java))))
         sortItemTile.check(matches(isDisplayed()))
+        return this
     }
 
     inner class SyncFrequencyDialog {

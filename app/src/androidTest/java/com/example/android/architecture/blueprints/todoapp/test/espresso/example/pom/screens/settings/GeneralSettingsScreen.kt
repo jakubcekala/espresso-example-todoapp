@@ -6,6 +6,7 @@ import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers.*
 import android.widget.RelativeLayout
 import com.example.android.architecture.blueprints.todoapp.R
+import com.example.android.architecture.blueprints.todoapp.test.espresso.example.testdata.SettingsTestData
 import org.hamcrest.CoreMatchers.instanceOf
 import org.hamcrest.core.AllOf.allOf
 
@@ -29,7 +30,7 @@ class GeneralSettingsScreen : SettingBaseScreen() {
         emailLabel.check(matches(isDisplayed()))
     }
 
-    fun verifyTitleInSortByTile(sortType: SortType): GeneralSettingsScreen {
+    fun verifyTitleInSortByTile(sortType: SettingsTestData.SortType): GeneralSettingsScreen {
         val sortItemTile = onView(allOf(withText(sortType.text), withParent(instanceOf(RelativeLayout::class.java))))
         sortItemTile.check(matches(isDisplayed()))
         return this
@@ -62,9 +63,9 @@ class GeneralSettingsScreen : SettingBaseScreen() {
     }
 
     inner class SortByDialog {
-        private val creationDateTile = onView(allOf(withId(android.R.id.text1), withText(SortType.CREATION_DATE.text)))
-        private val updateDateTile = onView(allOf(withId(android.R.id.text1), withText(SortType.UPDATE_DATE.text)))
-        private val titleTile = onView(allOf(withId(android.R.id.text1), withText(SortType.TITLE.text)))
+        private val creationDateTile = onView(allOf(withId(android.R.id.text1), withText("Creation date")))
+        private val updateDateTile = onView(allOf(withId(android.R.id.text1), withText("Update date")))
+        private val titleTile = onView(allOf(withId(android.R.id.text1), withText("Title")))
 
         fun selectCreationDate(): GeneralSettingsScreen {
             creationDateTile.perform(click())
@@ -79,11 +80,5 @@ class GeneralSettingsScreen : SettingBaseScreen() {
             titleTile.perform(click())
             return GeneralSettingsScreen()
         }
-    }
-
-    enum class SortType(val text: String) {
-        CREATION_DATE("Creation date"),
-        UPDATE_DATE("Update date"),
-        TITLE("Title")
     }
 }

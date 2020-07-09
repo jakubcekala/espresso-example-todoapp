@@ -9,4 +9,10 @@ class SettingsTestData {
         HOURS6("6 hours"),
         NEVER("Never")
     }
+
+    enum class SortType(val text: String) {
+        CREATION_DATE("Creation date"),
+        UPDATE_DATE("Update date"),
+        TITLE("Title")
+    }
 }

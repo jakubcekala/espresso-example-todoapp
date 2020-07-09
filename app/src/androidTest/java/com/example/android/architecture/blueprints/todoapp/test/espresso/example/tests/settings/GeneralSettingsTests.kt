@@ -2,6 +2,7 @@ package com.example.android.architecture.blueprints.todoapp.test.espresso.exampl
 
 import com.example.android.architecture.blueprints.todoapp.test.espresso.example.pom.screens.TodoListScreen
 import com.example.android.architecture.blueprints.todoapp.test.espresso.example.pom.screens.settings.GeneralSettingsScreen
+import com.example.android.architecture.blueprints.todoapp.test.espresso.example.testdata.SettingsTestData
 import com.example.android.architecture.blueprints.todoapp.test.espresso.example.tests.BaseTest
 import org.junit.Before
 import org.junit.Test
@@ -28,18 +29,18 @@ class GeneralSettingsTests: BaseTest() {
     @Test
     fun sortByCreationDate() {
         generalSettingsScreen.clickOnSortByButton().selectCreationDate()
-                .verifyTitleInSortByTile(GeneralSettingsScreen.SortType.CREATION_DATE)
+                .verifyTitleInSortByTile(SettingsTestData.SortType.CREATION_DATE)
     }
 
     @Test
     fun sortByUpdateDate() {
         generalSettingsScreen.clickOnSortByButton().selectUpdateDate().
-                verifyTitleInSortByTile(GeneralSettingsScreen.SortType.UPDATE_DATE)
+                verifyTitleInSortByTile(SettingsTestData.SortType.UPDATE_DATE)
     }
 
     @Test
     fun sortByTitle() {
         generalSettingsScreen.clickOnSortByButton().selectTitle().
-            verifyTitleInSortByTile(GeneralSettingsScreen.SortType.TITLE)
+            verifyTitleInSortByTile(SettingsTestData.SortType.TITLE)
     }
 }

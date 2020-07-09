@@ -35,6 +35,4 @@ class DataSyncSettingsScreen : SettingBaseScreen() {
             return DataSyncSettingsScreen()
         }
     }
-
-
 }

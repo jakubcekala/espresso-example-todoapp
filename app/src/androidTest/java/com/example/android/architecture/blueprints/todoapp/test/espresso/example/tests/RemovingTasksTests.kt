@@ -1,42 +1,40 @@
 package com.example.android.architecture.blueprints.todoapp.test.espresso.example.tests
 
 import com.example.android.architecture.blueprints.todoapp.test.espresso.example.pom.screens.TodoListScreen
+import com.example.android.architecture.blueprints.todoapp.test.espresso.example.testdata.TaskModel
+import com.example.android.architecture.blueprints.todoapp.test.espresso.example.testdata.TasksTestData
 import org.junit.Before
 import org.junit.Test
-import java.util.*
 
 class RemovingTasksTests: BaseTest() {
 
     private lateinit var todoListScreen: TodoListScreen
-
-    var taskTitle = ""
-    var taskDescription = ""
+    private lateinit var taskItem: TaskModel
 
     @Before
     fun setTaskDetails() {
-        taskTitle = "Title" + Random().nextInt()
-        taskDescription = "Description" + Random().nextInt()
+        taskItem = TasksTestData.getTaskItem()
     }
 
     @Before
     fun createTaskToRemove() {
-        todoListScreen = TodoListScreen().clickOnFABButton().addNewTask(taskTitle, taskDescription)
+        todoListScreen = TodoListScreen().clickOnFABButton().addNewTask(taskItem.title, taskItem.description)
     }
 
     @Test
     fun removeActiveTask() {
-        todoListScreen.enterTaskDetails(taskTitle).clickOnDeleteTaskButton().checkIfListIsEmpty()
+        todoListScreen.enterTaskDetails(taskItem.title).clickOnDeleteTaskButton().checkIfListIsEmpty()
     }
 
     @Test
     fun removeCompletedTask() {
-        todoListScreen.markTaskAsCompleted(taskTitle).enterTaskDetails(taskTitle)
+        todoListScreen.markTaskAsCompleted(taskItem.title).enterTaskDetails(taskItem.title)
                 .clickOnDeleteTaskButton().checkIfListIsEmpty()
     }
 
     @Test
     fun clearCompletedTasks() {
-        todoListScreen.markTaskAsCompleted(taskTitle).selectClearCompletedFromContextualMenu().
+        todoListScreen.markTaskAsCompleted(taskItem.title).selectClearCompletedFromContextualMenu().
                 checkIfListIsEmpty()
     }
 }

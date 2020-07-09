@@ -11,8 +11,6 @@ class GeneralSettingsTests: BaseTest() {
 
     lateinit var generalSettingsScreen: GeneralSettingsScreen
 
-    val email = "test@test.com"
-
     @Before
     fun goToGeneralSettingScreen() {
         generalSettingsScreen = TodoListScreen().openHamburgerMenu().
@@ -22,8 +20,8 @@ class GeneralSettingsTests: BaseTest() {
     @Test
     fun changeEmailToShare() {
         generalSettingsScreen.clickOnEmailToShareButton().
-            clearEmail().enterEmail(email).clickOnOkButton().
-                verifyEmailInEmailToShareTile(email)
+            clearEmail().enterEmail(SettingsTestData.email).clickOnOkButton().
+                verifyEmailInEmailToShareTile(SettingsTestData.email)
     }
 
     @Test

@@ -12,7 +12,6 @@ import org.hamcrest.CoreMatchers.not
 class StatisticsScreen : BaseScreen() {
     private val okDialogButton = onView(allOf(withId(android.R.id.button1), withText(android.R.string.ok)))
     private val cancelDialogButton = onView(allOf(withId(android.R.id.button2), withText(android.R.string.cancel)))
-    private val alertTitle = onView(withId(R.id.alertTitle))
     private val alertMessageTextView = onView(withId(android.R.id.message))
 
     private val statisticEmptyTextView = onView(allOf(withId(R.id.statistics), withText(R.string.statistics_no_tasks)))
@@ -29,13 +28,11 @@ class StatisticsScreen : BaseScreen() {
     }
 
     fun checkAlertDialogDisplay(): StatisticsScreen {
-        alertTitle.check(matches(isDisplayed()))
         alertMessageTextView.check(matches(isDisplayed()))
         return this
     }
 
     fun checkAlertDialogNotDisplayed(): StatisticsScreen {
-        alertTitle.check(matches(not(isDisplayed())))
         alertMessageTextView.check(matches(not(isDisplayed())))
         return this
     }

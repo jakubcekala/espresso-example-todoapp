@@ -12,23 +12,29 @@ class NotificationsSettingsTests: BaseTest() {
 
     @Before
     fun goToNotificationSettingScreen() {
-        notificationSettingsScreen = TodoListScreen().openHamburgerMenu().
-            clickOnSettingsButton().clickOnNotificationButton()
+        notificationSettingsScreen = TodoListScreen()
+                .openHamburgerMenu()
+                .clickOnSettingsButton()
+                .clickOnNotificationButton()
     }
 
     @Test
     fun sendNotification() {
-        notificationSettingsScreen.clickOnSendNotificationButton()
+        notificationSettingsScreen
+                .clickOnSendNotificationButton()
     }
 
     @Test
     fun sendNotificationWithDelay() {
-        notificationSettingsScreen.clickOnSendNotificationWIthDelayButton()
+        notificationSettingsScreen
+                .clickOnSendNotificationWIthDelayButton()
     }
 
     @Test
     fun enableNotifications() {
-        notificationSettingsScreen.enableNotification().isEnableNotificationSubmenuDisplayed()
+        notificationSettingsScreen
+                .enableNotification()
+                .isEnableNotificationSubmenuDisplayed()
     }
 
     //TODO Create tests for ""Notify when TO-DO older than"
@@ -36,6 +42,9 @@ class NotificationsSettingsTests: BaseTest() {
 
     @Test
     fun changeVibrateStatus() {
-        notificationSettingsScreen.enableNotification().turnOnVibrate().turnOffVibrate()
+        notificationSettingsScreen
+                .enableNotification()
+                .turnOnVibrate()
+                .turnOffVibrate()
     }
 }

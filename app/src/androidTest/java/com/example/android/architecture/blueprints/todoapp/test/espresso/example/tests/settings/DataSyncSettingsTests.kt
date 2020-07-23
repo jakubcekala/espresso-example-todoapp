@@ -13,49 +13,57 @@ class DataSyncSettingsTests: BaseTest() {
 
     @Before
     fun goToDataSyncSettingScreen() {
-        dataSyncSettingsScreen = TodoListScreen().openHamburgerMenu().
-            clickOnSettingsButton().clickOnDataSyncButton()
+        dataSyncSettingsScreen = TodoListScreen()
+                .openHamburgerMenu()
+                .clickOnSettingsButton()
+                .clickOnDataSyncButton()
     }
 
     @Test
     fun set15MinutesFreq() {
-        dataSyncSettingsScreen.clickOnSyncFrequencyButton().
-            selectSyncFrequency(SettingsTestData.SyncFrequency.MINUTES15).
-                verifySetFrequency(SettingsTestData.SyncFrequency.MINUTES15)
+        dataSyncSettingsScreen
+                .clickOnSyncFrequencyButton()
+                .selectSyncFrequency(SettingsTestData.SyncFrequency.MINUTES15)
+                .verifySetFrequency(SettingsTestData.SyncFrequency.MINUTES15)
     }
 
     @Test
     fun set30MinutesFreq() {
-        dataSyncSettingsScreen.clickOnSyncFrequencyButton().
-            selectSyncFrequency(SettingsTestData.SyncFrequency.MINUTES30).
-                verifySetFrequency(SettingsTestData.SyncFrequency.MINUTES30)
+        dataSyncSettingsScreen
+                .clickOnSyncFrequencyButton()
+                .selectSyncFrequency(SettingsTestData.SyncFrequency.MINUTES30)
+                .verifySetFrequency(SettingsTestData.SyncFrequency.MINUTES30)
     }
 
     @Test
     fun set1HourFreq() {
-        dataSyncSettingsScreen.clickOnSyncFrequencyButton().
-            selectSyncFrequency(SettingsTestData.SyncFrequency.HOUR).
-                verifySetFrequency(SettingsTestData.SyncFrequency.HOUR)
+        dataSyncSettingsScreen
+                .clickOnSyncFrequencyButton()
+                .selectSyncFrequency(SettingsTestData.SyncFrequency.HOUR)
+                .verifySetFrequency(SettingsTestData.SyncFrequency.HOUR)
     }
 
     @Test
     fun set3HoursFreq() {
-        dataSyncSettingsScreen.clickOnSyncFrequencyButton().
-            selectSyncFrequency(SettingsTestData.SyncFrequency.HOURS3).
-                verifySetFrequency(SettingsTestData.SyncFrequency.HOURS3)
+        dataSyncSettingsScreen
+                .clickOnSyncFrequencyButton()
+                .selectSyncFrequency(SettingsTestData.SyncFrequency.HOURS3)
+                .verifySetFrequency(SettingsTestData.SyncFrequency.HOURS3)
     }
 
     @Test
     fun set6HoursFreq() {
-        dataSyncSettingsScreen.clickOnSyncFrequencyButton().
-            selectSyncFrequency(SettingsTestData.SyncFrequency.HOURS6).
-                verifySetFrequency(SettingsTestData.SyncFrequency.HOURS6)
+        dataSyncSettingsScreen
+                .clickOnSyncFrequencyButton()
+                .selectSyncFrequency(SettingsTestData.SyncFrequency.HOURS6)
+                .verifySetFrequency(SettingsTestData.SyncFrequency.HOURS6)
     }
 
     @Test
     fun setNeverFreq() {
-        dataSyncSettingsScreen.clickOnSyncFrequencyButton().
-            selectSyncFrequency(SettingsTestData.SyncFrequency.NEVER).
-                verifySetFrequency(SettingsTestData.SyncFrequency.NEVER)
+        dataSyncSettingsScreen
+                .clickOnSyncFrequencyButton()
+                .selectSyncFrequency(SettingsTestData.SyncFrequency.NEVER)
+                .verifySetFrequency(SettingsTestData.SyncFrequency.NEVER)
     }
 }

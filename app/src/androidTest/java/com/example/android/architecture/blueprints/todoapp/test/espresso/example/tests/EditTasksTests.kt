@@ -22,33 +22,41 @@ class EditTasksTests: BaseTest() {
 
     @Before
     fun addTaskToEdit() {
-        editTaskScreen = TodoListScreen().clickOnFABButton().
-                addNewTask(taskItem.title, taskItem.description).
-                enterTaskDetails(taskItem.title).clickOnEditFABButton()
+        editTaskScreen = TodoListScreen()
+                .clickOnFABButton()
+                .addNewTask(taskItem.title, taskItem.description)
+                .enterTaskDetails(taskItem.title)
+                .clickOnEditFABButton()
     }
 
     @Test
     fun editTaskCorrectly() {
-        editTaskScreen.updateTask(taskItemEdited.title, taskItemEdited.description).
-                checkIfTaskIsDisplayed(taskItemEdited.title)
+        editTaskScreen
+                .updateTask(taskItemEdited.title, taskItemEdited.description)
+                .checkIfTaskIsDisplayed(taskItemEdited.title)
     }
 
     @Test
     fun editTaskEmptyTitle() {
-        editTaskScreen.updateTask("", taskItemEdited.description).
-                checkIfTaskIsDisplayed(taskItemEdited.description)
+        editTaskScreen
+                .updateTask("", taskItemEdited.description)
+                .checkIfTaskIsDisplayed(taskItemEdited.description)
     }
 
     @Test
     fun editTaskEmptyDescription() {
-        editTaskScreen.updateTask(taskItemEdited.title,"").
-                checkIfTaskIsDisplayed(taskItemEdited.title)
+        editTaskScreen
+                .updateTask(taskItemEdited.title,"")
+                .checkIfTaskIsDisplayed(taskItemEdited.title)
     }
 
     @Test
     fun editTaskEmptyTitleAndDescription() {
-        editTaskScreen.updateTaskTitle("").updateTaskDescription("").
-                clickOnConfirmFabButton().
-                checkErrorSnackbarIsDisplayed().checkIfTitleErrorIsDisplayed()
+        editTaskScreen
+                .updateTaskTitle("")
+                .updateTaskDescription("")
+                .clickOnConfirmFabButton()
+                .checkErrorSnackbarIsDisplayed()
+                .checkIfTitleErrorIsDisplayed()
     }
 }

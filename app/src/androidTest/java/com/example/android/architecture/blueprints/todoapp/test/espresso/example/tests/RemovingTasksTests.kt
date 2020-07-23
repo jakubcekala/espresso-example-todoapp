@@ -18,23 +18,33 @@ class RemovingTasksTests: BaseTest() {
 
     @Before
     fun createTaskToRemove() {
-        todoListScreen = TodoListScreen().clickOnFABButton().addNewTask(taskItem.title, taskItem.description)
+        todoListScreen = TodoListScreen()
+                .clickOnFABButton()
+                .addNewTask(taskItem.title, taskItem.description)
     }
 
     @Test
     fun removeActiveTask() {
-        todoListScreen.enterTaskDetails(taskItem.title).clickOnDeleteTaskButton().checkIfListIsEmpty()
+        todoListScreen
+                .enterTaskDetails(taskItem.title)
+                .clickOnDeleteTaskButton()
+                .checkIfListIsEmpty()
     }
 
     @Test
     fun removeCompletedTask() {
-        todoListScreen.markTaskAsCompleted(taskItem.title).enterTaskDetails(taskItem.title)
-                .clickOnDeleteTaskButton().checkIfListIsEmpty()
+        todoListScreen
+                .markTaskAsCompleted(taskItem.title)
+                .enterTaskDetails(taskItem.title)
+                .clickOnDeleteTaskButton()
+                .checkIfListIsEmpty()
     }
 
     @Test
     fun clearCompletedTasks() {
-        todoListScreen.markTaskAsCompleted(taskItem.title).selectClearCompletedFromContextualMenu().
-                checkIfListIsEmpty()
+        todoListScreen
+                .markTaskAsCompleted(taskItem.title)
+                .selectClearCompletedFromContextualMenu()
+                .checkIfListIsEmpty()
     }
 }
